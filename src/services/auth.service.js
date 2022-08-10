@@ -5,6 +5,8 @@ const userDao = require("../models/user.dao");
 const { validateEmail } = require("../utils/validators");
 
 const signUp = async (email, password) => {
+  validateEmail(email);
+
   const user = await userDao.getUserByEmail(email);
 
   if (user) {
@@ -12,8 +14,6 @@ const signUp = async (email, password) => {
     err.statusCode = 409;
     throw err;
   }
-
-  validateEmail(email);
 
   const hashedPassword = await bcrypt.hash(password, 10);
   await userDao.createUser(email, hashedPassword);
