@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
-const userDao = require("../models/user.dao");
-const { validateEmail } = require("../utils/validators");
+const userDao = require('../models/user.dao');
+const { validateEmail } = require('../utils/validators');
 
 const signUp = async (email, password) => {
   validateEmail(email);
@@ -10,8 +10,8 @@ const signUp = async (email, password) => {
   const user = await userDao.getUserByEmail(email);
 
   if (user) {
-    const err = new Error("duplicated email");
-    err.statusCode = 409;
+    const err = new Error('duplicated email');
+    err.statusCode = 400;
     throw err;
   }
 
@@ -23,7 +23,7 @@ const signIn = async (email, password) => {
   const user = await userDao.getUserByEmail(email);
 
   if (!user) {
-    const err = new Error("specified user does not exist");
+    const err = new Error('specified user does not exist');
     err.statusCode = 404;
     throw err;
   }
@@ -31,7 +31,7 @@ const signIn = async (email, password) => {
   const result = await bcrypt.compare(password, user.password);
 
   if (!result) {
-    const err = new Error("invalid password");
+    const err = new Error('invalid password');
     err.statusCode = 400;
     throw err;
   }
