@@ -32,7 +32,7 @@ const signIn = async (email, password) => {
 
   if (!result) {
     const err = new Error('invalid password');
-    err.statusCode = 400;
+    err.statusCode = 401;
     throw err;
   }
 
