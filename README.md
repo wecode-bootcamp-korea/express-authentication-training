@@ -5,6 +5,16 @@ POST :8000/auth/signup // 회원가입 Endpoint
 POST :8000/auth/signin // 로그인 Endpoint
 ```
 
+# npm install
+
+Repository를 클론 받은 후에는 server 구동에 필요한 package들이 존재하지 않는 상태이기 때문에 이에 대한 작업이 필요합니다.
+
+```shell
+$ npm i
+```
+
+위 명령어를 통해 package.json에 명시되어 있는 package들과 그에 맞는 버전들을 손쉽게 설치 할 수 있습니다.
+
 # dotenv
 
 본인 환경에 맞는 `.env` 파일을 생성해야 합니다. 현재 Repository에서 DataSource 객체를 만들 때 사용되는 값과 맞춰 `.env`에 작성해야 합니다.
